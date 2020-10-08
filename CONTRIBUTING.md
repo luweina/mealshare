@@ -31,7 +31,7 @@ ticket:
  4. A checklist of QA tasks
 
 ## Issue template
-```
+
 [Title of the issue or feature request]
 
 Detailed description of the issue. Put as much information as you can, potentially
@@ -52,7 +52,7 @@ If it's an issue, add the steps to reproduce like this:
 2. If you're adding new external API, it must be properly documented.
 3. The commit message is formatted as follows:
 
-```
+
    component: <summary>
 
    A paragraph explaining the problem and its context.
