@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
-import asyncHandler from "express-async-handler";
-import User from "../models/userModel.js";
+import jwt from 'jsonwebtoken'
+import asyncHandler from 'express-async-handler'
+import User from '../models/userModel.js'
 
 const protect = asyncHandler(async (req, res, next) => {
   let token;
@@ -10,12 +10,15 @@ const protect = asyncHandler(async (req, res, next) => {
   ) {
     try {
         token = req.headers.authorization.split(' ')[1]
-        console.log (token)
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        console.log (decoded)
+        req.user = await User.findById(decoded.id).select('-password')
+
+
         next()
     } catch(error) {
-
+        console.error(error)
+        res.status(401)
+        throw new Error('Not authorized')
     }
   }
 
@@ -27,4 +30,13 @@ const protect = asyncHandler(async (req, res, next) => {
 
 });
 
-export { protect };
+const merchant = (req, res, next) => {
+  if (req.user && req.user.isMerchant) {
+    next()
+  } else {
+    res.status(401)
+    throw new Error('Not authorized as Merchant')
+  }
+}
+
+export { protect, merchant };
