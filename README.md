@@ -8,8 +8,8 @@ This is a BCIT term project, an app that are supposed to bring homemade food res
 ## Built With
 
 * [React](https://reactjs.org/) 
-* [MongoDB]
-* [ExpressJS]
+* MongoDB
+* ExpressJS
 
 
 
