@@ -7,12 +7,14 @@ import {
   deleteProduct,
   updateProduct,
   createProduct,
-  createProductReview
+  createProductReview,
+  getTopProducts
 } from "../controllers/productController.js";
 import { protect, merchant } from "../middleware/authMiddleware.js";
 
 router.route("/").get(getProducts).post(protect, merchant, createProduct)
 router.route('/:id/reviews').post(protect, createProductReview)
+router.get('/top', getTopProducts)
 router
   .route("/:id")
   .get(getProductById)
