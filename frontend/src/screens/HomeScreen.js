@@ -25,8 +25,9 @@ const HomeScreen = ({ match }) => {
   }, [dispatch, keyword, pageNumber])
 
   return (
+
     <>
-      
+      <h1>Trending</h1>
       {!keyword ? (
         <ProductCarousel />
       ) : (
